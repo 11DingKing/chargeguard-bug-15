@@ -13,7 +13,7 @@ func NewHazardRepository() *HazardRepository {
 func (r *HazardRepository) List(tenant, status string) []ScopedHazard {
 	out := []ScopedHazard{}
 	for _, h := range r.items {
-		if h.Status == status {
+		if h.Tenant == tenant && h.Status == status {
 			out = append(out, h)
 		}
 	}
@@ -22,7 +22,7 @@ func (r *HazardRepository) List(tenant, status string) []ScopedHazard {
 func (r *HazardRepository) Count(tenant, status string) int {
 	count := 0
 	for _, h := range r.items {
-		if h.Status == status {
+		if h.Tenant == tenant && h.Status == status {
 			count++
 		}
 	}
